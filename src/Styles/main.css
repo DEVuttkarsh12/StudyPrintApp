@@ -1,0 +1,180 @@
+:root {
+    --heading-font: "Merriweather", serif;
+    --body-font:
+        "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial;
+
+    /* Light theme colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
+    --border-color: #e5e7eb;
+    --border-color-strong: #d1d5db;
+    --accent-color: #4f46e5;
+    --accent-hover: #4338ca;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+[data-theme="dark"] {
+    /* Dark theme colors */
+    --bg-primary: #1f2937;
+    --bg-secondary: #111827;
+    --bg-tertiary: #0f172a;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-tertiary: #9ca3af;
+    --border-color: #374151;
+    --border-color-strong: #4b5563;
+    --accent-color: #6366f1;
+    --accent-hover: #818cf8;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+}
+
+/* Body */
+body {
+    font-family: var(--body-font);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Preview container (print area) */
+.preview {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    padding: 20px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* A4 dimensions for screen preview (approx) */
+.a4 {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 16mm;
+    box-sizing: border-box;
+}
+
+/* Two column layout for two-column template */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    position: relative;
+}
+
+/* Vertical partition line for two-column layout */
+.two-column>div:first-child {
+    border-right: 1px solid #d1d5db;
+    padding-right: 16px;
+    min-height: 250mm;
+    /* Ensure line extends full height */
+}
+
+.two-column>div:last-child {
+    padding-left: 16px;
+    min-height: 250mm;
+    /* Match height for symmetry */
+}
+
+/* Cornell Notes layout */
+.cornell-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cornell-main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 12px;
+    min-height: 200mm;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 12px;
+}
+
+.cornell-cues {
+    border-right: 2px solid #e5e7eb;
+    padding-right: 12px;
+}
+
+.cornell-notes {
+    padding-left: 12px;
+}
+
+.cornell-summary {
+    padding-top: 12px;
+}
+
+/* Q&A / Flashcards layout */
+.qa-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.qa-questions {
+    border-right: 2px solid #e5e7eb;
+    padding-right: 12px;
+}
+
+.qa-answers {
+    padding-left: 12px;
+}
+
+/* Print rules: ensure white background and remove UI */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .preview,
+    .preview * {
+        visibility: visible;
+    }
+
+    .preview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}
+
+/* Dark mode specific overrides */
+[data-theme="dark"] .cornell-main {
+    border-bottom-color: var(--border-color-strong);
+}
+
+[data-theme="dark"] .cornell-cues {
+    border-right-color: var(--border-color-strong);
+}
+
+[data-theme="dark"] .qa-questions {
+    border-right-color: var(--border-color-strong);
+}
+
+[data-theme="dark"] .two-column>div:first-child {
+    border-right-color: var(--border-color-strong);
+}
+
+/* Keep preview white in dark mode for PDF export */
+[data-theme="dark"] .preview {
+    background: #ffffff !important;
+    color: #111827 !important;
+}
+
+[data-theme="dark"] .preview * {
+    color: #111827 !important;
+    border-color: #e5e7eb !important;
+}
