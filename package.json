@@ -2,7 +2,6 @@
   "name": "study-sheet-generator",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "description": "Client-only Study Sheet Generator (React + Vite) — export A4 PDFs and share notes via compressed URL hash",
   "scripts": {
     "dev": "vite",
