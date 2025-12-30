@@ -55,6 +55,14 @@ body {
     border-radius: 8px;
     color: var(--text-primary);
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    /* For interactive images */
+}
+
+/* Hide handles and toolbars during export */
+.preview [data-html2canvas-ignore="true"],
+.capture-hidden {
+    display: none !important;
 }
 
 /* A4 dimensions for screen preview (approx) */
@@ -177,4 +185,56 @@ body {
 [data-theme="dark"] .preview * {
     color: #111827 !important;
     border-color: #e5e7eb !important;
+}
+
+/* Rich Content Styles */
+.katex-block {
+    margin: 1.5em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.rendered-content h3 {
+    font-family: var(--heading-font);
+}
+
+.rendered-content blockquote {
+    font-family: var(--heading-font);
+}
+
+/* Focus Mode */
+.focus-active header,
+.focus-active .md\:col-span-1,
+.focus-active footer {
+    display: none !important;
+}
+
+.focus-active .max-w-7xl {
+    max-width: 100%;
+    padding: 0;
+}
+
+.focus-active .md\:col-span-2 {
+    grid-column: span 3 / span 3 !important;
+    display: flex;
+    justify-content: center;
+}
+
+.focus-active .preview.a4 {
+    box-shadow: none;
+    border: none;
+}
+
+/* Sidebar & Multi-sheet */
+.sheet-item {
+    transition: all 0.2s ease;
+}
+
+.sheet-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.sheet-item.active {
+    background-color: var(--accent-color);
+    color: white;
 }
